@@ -5,7 +5,7 @@ import wallet from "../../../src/assets/wallet.png";
 
 const ConnectWalletButton: React.FC = () => {
   const { address, isConnected } = useAccount();
-  const { connect, connectors, isPending, error } = useConnect();
+  const { connect, connectors, isPending } = useConnect();
   const { disconnect } = useDisconnect();
   const [showError, setShowError] = useState(false);
   const [mockConnected, setMockConnected] = useState(false);

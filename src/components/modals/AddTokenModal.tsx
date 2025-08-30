@@ -46,7 +46,7 @@ const AddTokenModal: React.FC<AddTokenModalProps> = ({ isOpen, onClose }) => {
 
   const handleAddSelectedTokens = () => {
     selectedTokens.forEach(token => {
-      dispatch(addToken({ id: token.id, symbol: token.symbol, image: token.thumb, name: token.name }));
+      dispatch(addToken({ id: token.id, symbol: token.symbol, name: token.name }));
     });
     onClose();
   };
