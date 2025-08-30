@@ -11,7 +11,6 @@ interface PaginationProps {
 const Pagination: React.FC<PaginationProps> = ({ config, onPageChange }) => {
   const { currentPage, itemsPerPage, totalItems } = config;
   
-  // Calculate pagination values
   const totalPages = Math.ceil(totalItems / itemsPerPage);
   const startItem = (currentPage - 1) * itemsPerPage + 1;
   const endItem = Math.min(currentPage * itemsPerPage, totalItems);
@@ -31,7 +30,6 @@ const Pagination: React.FC<PaginationProps> = ({ config, onPageChange }) => {
     }
   };
 
-  // Don't render pagination if there's only one page or no items
   if (totalPages <= 1) {
     return null;
   }

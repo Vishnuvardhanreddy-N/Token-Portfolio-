@@ -16,10 +16,9 @@ const PortfolioSummary: React.FC = () => {
   const tokenIds = useMemo(() => watchlistItems.map(item => item.id).join(','), [watchlistItems]);
   const { data: marketData, isLoading, isError } = useGetMarketDataQuery(tokenIds, {
     skip: tokenIds.length === 0,
-    pollingInterval: 30000, // Refresh every 30 seconds
+    pollingInterval: 30000, 
   });
 
-  // Update token details (name, image) in Redux once market data is available
   useEffect(() => {
     if (marketData && marketData.length > 0) {
       marketData.forEach(apiItem => {
@@ -44,7 +43,6 @@ const PortfolioSummary: React.FC = () => {
           value: value,
         };
       }
-      // If API data isn't found, use placeholder values
       return {
         ...watchlistItem,
         current_price: 0,
@@ -63,24 +61,21 @@ const PortfolioSummary: React.FC = () => {
   const chartData: DonutChartData[] = useMemo(() => {
     if (portfolioTotal === 0 || combinedPortfolioData.length === 0) return [];
 
-    // Sort by value for consistent coloring/ordering
     const sortedData = [...combinedPortfolioData].sort((a, b) => b.value - a.value);
 
-    // Display all items individually, as per the screenshot's legend
     return sortedData.map((item, index) => ({
-      name: `${item.name} (${item.symbol.toUpperCase()})`, // Full name for legend and tooltip
+      name: `${item.name} (${item.symbol.toUpperCase()})`, 
       value: item.value,
       percentage: ((item.value / portfolioTotal) * 100).toFixed(2) + '%',
       color: CHART_COLORS[index % CHART_COLORS.length],
-      symbol: item.symbol.toUpperCase(), // Symbol for legend (used here as a fallback identifier)
+      symbol: item.symbol.toUpperCase(), 
     }));
   }, [combinedPortfolioData, portfolioTotal]);
 
   const lastUpdatedTimestamp = marketData && marketData.length > 0
-    ? formatTimestamp(new Date(marketData[0].last_updated)) // Assuming all market data updates around the same time
+    ? formatTimestamp(new Date(marketData[0].last_updated))
     : 'N/A';
 
-  // Handling loading and error states
   if (isLoading && watchlistItems.length > 0) {
     return (
       <div className={`${styles.portfolioSummary} bg-card`}>
@@ -97,7 +92,6 @@ const PortfolioSummary: React.FC = () => {
     );
   }
 
-  // If no items in watchlist or market data, display empty state
   if (watchlistItems.length === 0 || portfolioTotal === 0) {
     return (
       <div className={`${styles.portfolioSummary} bg-card`}>
@@ -108,18 +102,16 @@ const PortfolioSummary: React.FC = () => {
 
   return (
     <div className={`${styles.portfolioSummary} bg-card`}>
-      {/* Left Column: Portfolio Total Value & Last Updated */}
       <div className={styles.portfolioInfoColumn}>
-        <div className={styles.portfolioInfoTop}> {/* NEW: Group for top elements */}
+        <div className={styles.portfolioInfoTop}> 
           <div className={styles.sectionTitle}>Portfolio Total</div>
           <div className={styles.totalValue}>{formatCurrency(portfolioTotal)}</div>
         </div>
         <div className={styles.lastUpdated}>Last updated: {lastUpdatedTimestamp}</div>
       </div>
       
-      {/* Right Column: Chart and Legend */}
       <div className={styles.chartAndLegendColumn}>
-        <div className={styles.sectionTitle}>Portfolio Total</div> {/* Title for the chart section */}
+        <div className={styles.sectionTitle}>Portfolio Total</div> 
         <div className={styles.chartContainer}>
           <div className={styles.chartSection}>
             <DonutChart data={chartData} totalValue={portfolioTotal} />

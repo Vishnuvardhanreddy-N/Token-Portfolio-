@@ -1,4 +1,3 @@
-// src/store/index.ts
 import { configureStore } from '@reduxjs/toolkit';
 import watchlistReducer from './slices/watchlistSlice';
 import { coingeckoApi } from './api/coingeckoApi';
@@ -12,7 +11,6 @@ export const store = configureStore({
     getDefaultMiddleware().concat(coingeckoApi.middleware),
 });
 
-// Subscribe to store changes to save watchlist to localStorage
 store.subscribe(() => {
   try {
     const serializedState = JSON.stringify(store.getState().watchlist.items);

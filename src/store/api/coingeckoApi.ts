@@ -1,15 +1,12 @@
-// src/store/api/coingeckoApi.ts
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import type { CoinMarketData, TokenSearchResult } from '../../types';
 
-// CoinGecko API Docs: https://docs.coingecko.com/reference/introduction
 
 export const coingeckoApi = createApi({
   reducerPath: 'coingeckoApi',
   baseQuery: fetchBaseQuery({ baseUrl: 'https://api.coingecko.com/api/v3/' }),
   endpoints: (builder) => ({
     getMarketData: builder.query<CoinMarketData[], string>({
-      // ids: comma-separated list of coin IDs (e.g., 'bitcoin,ethereum')
       query: (ids) =>
         `coins/markets?vs_currency=usd&ids=${ids}&order=market_cap_desc&per_page=250&page=1&sparkline=true&price_change_percentage=24h`,
       transformResponse: (response: any[]): CoinMarketData[] =>

@@ -1,4 +1,3 @@
-// src/utils/index.ts
 
 import type { WatchlistTableRowData } from '../types';
 
@@ -36,10 +35,10 @@ export const formatTimestamp = (timestamp: string | number | Date): string => {
   };
 
 export const CHART_COLORS = [
-    'var(--chart-color-1)', // yellow
-    'var(--chart-color-2)', // violet
-    'var(--chart-color-3)', // blue
-    'var(--chart-color-4)', // cyan
-    'var(--chart-color-5)', // emerald
-    'var(--chart-color-6)', // orange
+    'var(--chart-color-1)', 
+    'var(--chart-color-2)', 
+    'var(--chart-color-3)', 
+    'var(--chart-color-4)', 
+    'var(--chart-color-5)',
+    'var(--chart-color-6)', 
 ];

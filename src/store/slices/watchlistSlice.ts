@@ -6,14 +6,12 @@ interface WatchlistState {
   items: WatchlistItem[];
 }
 
-// Enhanced localStorage functions
 const WATCHLIST_STORAGE_KEY = 'crypto-portfolio-watchlist';
 
 const loadWatchlistFromLocalStorage = (): WatchlistItem[] => {
   try {
     const serializedWatchlist = localStorage.getItem(WATCHLIST_STORAGE_KEY);
     if (serializedWatchlist === null) {
-      // Seed demo portfolio so users immediately see a populated dashboard
       const demo: WatchlistItem[] = [
         { id: 'ethereum', symbol: 'ETH', name: 'Ethereum', image: '', holdings: 0.05 },
         { id: 'bitcoin', symbol: 'BTC', name: 'Bitcoin', image: '', holdings: 0.1 },
@@ -48,12 +46,11 @@ export const watchlistSlice = createSlice({
   initialState,
   reducers: {
     addToken: (state, action: PayloadAction<Omit<WatchlistItem, 'holdings' | 'image' | 'name'>>) => {
-      // Check if token already exists to prevent duplicates
       if (!state.items.some(item => item.id === action.payload.id)) {
         const newToken = {
           ...action.payload,
-          name: '', // Will be updated by API call in the component
-          image: '', // Will be updated by API call in the component
+          name: '',
+          image: '',
           holdings: 0,
         };
         state.items.push(newToken);
@@ -72,7 +69,6 @@ export const watchlistSlice = createSlice({
         saveWatchlistToLocalStorage(state.items);
       }
     },
-    // Action to update image/name once market data is fetched
     updateTokenDetails: (state, action: PayloadAction<{ id: string; name: string; image: string }>) => {
       const { id, name, image } = action.payload;
       const existingItem = state.items.find(item => item.id === id);
@@ -82,7 +78,6 @@ export const watchlistSlice = createSlice({
         saveWatchlistToLocalStorage(state.items);
       }
     },
-    // Add bulk update for localStorage sync
     setWatchlist: (state, action: PayloadAction<WatchlistItem[]>) => {
       state.items = action.payload;
       saveWatchlistToLocalStorage(state.items);

@@ -2,7 +2,6 @@ import { createConfig, http } from 'wagmi';
 import { mainnet, sepolia } from 'wagmi/chains';
 import { injected, metaMask, walletConnect } from 'wagmi/connectors';
 
-// Set up wagmi v2 config
 export const wagmiConfig = createConfig({
   chains: [mainnet, sepolia],
   transports: {

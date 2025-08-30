@@ -1,9 +1,8 @@
-// src/App.tsx
 import React from 'react';
 import Header from './components/layout/Header';
 import Home from './Home';
 
-import styles from './App.module.css'; // We'll create this CSS
+import styles from './App.module.css';
 
 const App: React.FC = () => {
   return (

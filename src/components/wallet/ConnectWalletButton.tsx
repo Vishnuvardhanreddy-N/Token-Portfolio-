@@ -12,7 +12,6 @@ const ConnectWalletButton: React.FC = () => {
   const [mockAddress, setMockAddress] = useState('');
   const [isConnecting, setIsConnecting] = useState(false);
 
-  // Debug logging to see what's happening
   useEffect(() => {
     console.log('Wallet state changed:', { isConnected, address, mockConnected, mockAddress, isConnecting });
   }, [isConnected, address, mockConnected, mockAddress, isConnecting]);
@@ -26,7 +25,6 @@ const ConnectWalletButton: React.FC = () => {
     console.log('Available connectors:', connectors);
     console.log('Selected connector:', injectedConnector);
     
-    // Show connecting state immediately
     setIsConnecting(true);
     setShowError(false);
     
@@ -36,12 +34,10 @@ const ConnectWalletButton: React.FC = () => {
         await connect({ connector: injectedConnector });
         console.log('Connection successful');
         
-        // Keep connecting state for at least 1 second for better UX
         setTimeout(() => {
           setIsConnecting(false);
         }, 2000);
         
-        // Wait a bit for wagmi to update state, then fallback if needed
         setTimeout(() => {
           if (!isConnected && !address) {
             console.log('Wagmi state not updated, using mock connection');
@@ -53,14 +49,12 @@ const ConnectWalletButton: React.FC = () => {
       } catch (err) {
         console.error('Connection failed:', err);
         setIsConnecting(false);
-        // Fallback to mock connection for demo
         console.log('Falling back to mock connection for demo');
         setMockConnected(true);
         setMockAddress('0x1234...5678');
       }
     } else {
       console.log('No connector available, using mock connection for demo');
-      // Simulate connection delay for better UX
       setTimeout(() => {
         setIsConnecting(false);
         setMockConnected(true);

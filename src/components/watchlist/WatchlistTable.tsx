@@ -1,4 +1,3 @@
-// src/components/watchlist/WatchlistTable.tsx
 import React, { useState, useMemo, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import type { RootState } from '../../store';
@@ -23,15 +22,13 @@ const WatchlistTable: React.FC = () => {
   const tokenIds = useMemo(() => watchlistItems.map(item => item.id).join(','), [watchlistItems]);
   const { data: marketData, isLoading, isFetching, isError, refetch } = useGetMarketDataQuery(tokenIds, {
     skip: tokenIds.length === 0,
-    pollingInterval: 30000, // Refresh every 30 seconds
+    pollingInterval: 30000, 
   });
 
-  // Reset to page 1 when watchlist items change
   useEffect(() => {
     setCurrentPage(1);
   }, [watchlistItems.length]);
 
-  // Update token details (name, image) in Redux once market data is available
   useEffect(() => {
     if (marketData && marketData.length > 0) {
       marketData.forEach(apiItem => {
@@ -56,7 +53,6 @@ const WatchlistTable: React.FC = () => {
           value: value,
         };
       }
-      // If API data isn't found, use placeholder values
       return {
         ...watchlistItem,
         current_price: 0,
@@ -70,7 +66,6 @@ const WatchlistTable: React.FC = () => {
     }).filter(item => item.current_price > 0 || item.holdings > 0);
   }, [watchlistItems, marketData]);
 
-  // Frontend pagination (since we're fetching specific tokens by ID)
   const paginatedData = useMemo(() => {
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
@@ -164,7 +159,6 @@ const WatchlistTable: React.FC = () => {
           </table>
         </div>
 
-        {/* Frontend pagination for watchlist items */}
         {combinedWatchlistData.length > itemsPerPage && (
           <Pagination config={paginationConfig} onPageChange={handlePageChange} />
         )}

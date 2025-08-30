@@ -1,8 +1,6 @@
 import React from 'react';
 import { PieChart, Pie, Cell, ResponsiveContainer } from 'recharts';
 import type { DonutChartData } from '../../types';
-import { formatCurrency } from '../../utils';
-
 import styles from './DonutChart.module.css';
 
 interface DonutChartProps {
@@ -24,15 +22,15 @@ const DonutChart: React.FC<DonutChartProps> = ({ data, totalValue }) => {
       <ResponsiveContainer width="100%" height="100%">
         <PieChart>
           <Pie
-            data={data} // Use data directly
+            data={data} 
             cx="50%"
             cy="50%"
-            innerRadius={45} // Reduced inner radius for a thinner donut
-            outerRadius={75} // Reduced outer radius for a smaller chart
+            innerRadius={45} 
+            outerRadius={75} 
             fill="#8884d8"
-            paddingAngle={5} // Slightly less padding
+            paddingAngle={5}
             dataKey="value"
-            nameKey="name" // Used for tooltip mapping
+            nameKey="name"
           >
             {data.map((entry, index) => (
               <Cell key={`cell-${index}`} fill={entry.color} />

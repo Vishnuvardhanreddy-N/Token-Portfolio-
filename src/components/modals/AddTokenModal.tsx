@@ -8,7 +8,7 @@ import { useSearchTokensQuery, useGetTrendingTokensQuery } from '../../store/api
 import type { TokenSearchResult } from '../../types';
 import circle from "../../../src/assets/check_circle.png";
 import star from "../../../src/assets/star.png";
-import styles from './AddTokenModal.module.css'; // We'll create this CSS
+import styles from './AddTokenModal.module.css'; 
 
 interface AddTokenModalProps {
   isOpen: boolean;
@@ -26,7 +26,7 @@ const AddTokenModal: React.FC<AddTokenModalProps> = ({ isOpen, onClose }) => {
   });
 
   const { data: trendingTokens, isLoading: isLoadingTrending, isError: trendingError } = useGetTrendingTokensQuery(undefined, {
-    skip: !!debouncedSearchTerm, // Skip trending if there's a search term
+    skip: !!debouncedSearchTerm, 
   });
 
   useEffect(() => {

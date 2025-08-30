@@ -1,9 +1,8 @@
-// src/Home.tsx
 import React from 'react';
 import PortfolioSummary from './components/portfolio/PortfolioSummary';
 import WatchlistTable from './components/watchlist/WatchlistTable';
 
-import styles from './Home.module.css'; // We'll create this CSS
+import styles from './Home.module.css'; 
 
 const Home: React.FC = () => {
   return (

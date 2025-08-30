@@ -1,4 +1,3 @@
-// src/components/watchlist/WatchlistRow.tsx
 import React, { useState, useRef, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { updateHoldings, removeToken } from '../../store/slices/watchlistSlice';
@@ -10,7 +9,7 @@ import { Fragment } from 'react';
 import pencil from "../../../src/assets/pencil-square.png";
 import trash from "../../../src/assets/trash.png";
 
-import styles from './WatchlistRow.module.css'; // We'll create this CSS
+import styles from './WatchlistRow.module.css'; 
 
 interface WatchlistRowProps {
   token: WatchlistTableRowData;
@@ -37,7 +36,7 @@ const WatchlistRow: React.FC<WatchlistRowProps> = ({ token }) => {
     if (!isNaN(newHoldings) && newHoldings >= 0) {
       dispatch(updateHoldings({ id: token.id, holdings: newHoldings }));
     } else {
-      setHoldingInput(token.holdings.toString()); // Revert if invalid
+      setHoldingInput(token.holdings.toString()); 
     }
     setIsEditingHoldings(false);
   };
