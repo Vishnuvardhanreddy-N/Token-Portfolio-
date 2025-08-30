@@ -1,0 +1,177 @@
+/* src/index.css */
+
+/* Basic Reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  /* Color Palette - derived from Figma */
+  --color-dark-bg-1: #1a1a1a; /* Overall background */
+  --color-dark-bg-2: #242424; /* Card backgrounds, deeper sections */
+  --color-dark-bg-3: #343434; /* Input fields, hover states */
+  --color-dark-bg-4: #484848; /* Borders, separators */
+
+  --color-text-primary: #ffffff; /* Main text */
+  --color-text-secondary: #aaaaaa; /* Helper text, faded elements */
+  --color-text-highlight: #e0e0e0; /* Slightly brighter text */
+
+  --color-accent-green: #6ee7b7; /* Success, positive change */
+  --color-accent-red: #ef4444; /* Danger, negative change */
+  --color-accent-blue: #60a5fa; /* Buttons, links */
+  --color-accent-orange: #fb923c; /* Some chart elements */
+
+  /* Specific UI Colors */
+  --color-button-primary: #6ee7b7;
+  --color-button-primary-hover: #5ad8a6;
+  --color-button-text: #1a1a1a;
+  --color-button-outline: #484848;
+  --color-button-outline-hover: #60a5fa;
+
+  --color-input-border: #484848;
+  --color-input-focus-border: #60a5fa;
+
+  /* Chart Colors (example, adjust for exact Figma match) */
+  --chart-color-1: #facc15; /* yellow-400 */
+  --chart-color-2: #8b5cf6; /* violet-500 */
+  --chart-color-3: #60a5fa; /* blue-400 */
+  --chart-color-4: #22d3ee; /* cyan-400 */
+  --chart-color-5: #34d399; /* emerald-400 */
+  --chart-color-6: #fb923c; /* orange-400 */
+}
+
+body {
+  font-family: 'Inter', sans-serif; /* Use Inter if imported, otherwise sans-serif */
+  background-color: var(--color-dark-bg-1);
+  color: var(--color-text-primary);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* Align items to the top */
+  min-height: 100vh;
+  padding: 20px; /* Overall padding around the app */
+}
+
+/* Basic typography */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--color-text-highlight);
+  margin-bottom: 0.5em;
+}
+
+p {
+  color: var(--color-text-secondary);
+  margin-bottom: 1em;
+}
+
+a {
+  color: var(--color-accent-blue);
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  color: inherit;
+  font-size: inherit;
+  padding: 0;
+}
+
+/* Scrollbar styling for dark theme */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-dark-bg-2);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-dark-bg-4);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-accent-blue);
+}
+
+/* General button styles (override as needed by components) */
+.button {
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+}
+
+.button-primary {
+  background-color: var(--color-button-primary);
+  color: var(--color-button-text);
+}
+.button-primary:hover {
+  background-color: var(--color-button-primary-hover);
+}
+.button-primary:disabled {
+  background-color: var(--color-dark-bg-4);
+  color: var(--color-text-secondary);
+  cursor: not-allowed;
+}
+
+.button-outline {
+  background-color: transparent;
+  border: 1px solid var(--color-button-outline);
+  color: var(--color-text-primary);
+}
+.button-outline:hover {
+  border-color: var(--color-button-outline-hover);
+  color: var(--color-button-outline-hover);
+}
+.button-outline:disabled {
+  border-color: var(--color-dark-bg-4);
+  color: var(--color-text-secondary);
+  cursor: not-allowed;
+}
+
+.input-field {
+  padding: 10px 12px;
+  background-color: var(--color-dark-bg-3);
+  border: 1px solid var(--color-input-border);
+  border-radius: 8px;
+  color: var(--color-text-primary);
+  font-size: 14px;
+  transition: border-color 0.2s ease;
+}
+.input-field:focus {
+  outline: none;
+  border-color: var(--color-input-focus-border);
+}
+.input-field::placeholder {
+  color: var(--color-text-secondary);
+}
+
+/* Utility classes */
+.text-green { color: var(--color-accent-green); }
+.text-red { color: var(--color-accent-red); }
+.text-secondary { color: var(--color-text-secondary); }
+.text-primary { color: var(--color-text-primary); }
+
+.bg-card { background-color: var(--color-dark-bg-2); }
+.border-divider { border-color: var(--color-dark-bg-4); }
+
+/* Custom font import (if using Inter from Google Fonts) */
+/* @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap'); */

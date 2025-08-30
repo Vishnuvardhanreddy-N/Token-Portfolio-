@@ -1,0 +1,271 @@
+/* src/components/watchlist/WatchlistRow.module.css */
+.row {
+  border-bottom: 1px solid var(--color-dark-bg-4);
+  transition: background-color 0.2s ease;
+}
+
+.row:last-child {
+  border-bottom: none;
+}
+
+.row:hover {
+  background-color: var(--color-dark-bg-3);
+}
+
+.row td {
+  padding: 12px 0px;
+  font-size: 14px;
+  color: var(--color-text-primary);
+  text-align: left;
+  vertical-align: middle; /* Align content vertically in the middle */
+}
+
+/* Specific cell styling */
+.tokenCell {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.tokenImage {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  object-fit: contain;
+}
+
+.tokenInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.tokenName {
+  font-weight: 500;
+}
+
+.tokenSymbol {
+  font-size: 12px;
+  color: var(--color-text-secondary);
+  margin-top: -2px;
+}
+
+.sparklineCell {
+  width: 100px; /* Fixed width for sparkline */
+  height: 30px; /* Fixed height to contain the compact chart */
+}
+
+/* Holdings Edit Mode */
+.holdingsCell {
+  position: relative;
+}
+
+.holdingsValue {
+  cursor: pointer;
+  display: inline-block;
+  padding: 4px 6px;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+}
+
+.holdingsValue:hover {
+  background-color: var(--color-dark-bg-3);
+}
+
+.holdingsEdit {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.holdingsInput {
+  width: 90px;
+  padding: 8px 12px;
+  border: 2px solid #4B5563;
+  border-radius: 8px;
+  background-color: var(--color-dark-bg-2);
+  color: var(--color-text-primary);
+  font-size: 14px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.holdingsInput:focus {
+  outline: none;
+  border-color: #A9E851;
+  box-shadow: 0 0 0 3px rgba(169, 232, 81, 0.1);
+}
+
+.saveButton {
+  background-color: #A9E851;
+  color: black;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 500;
+  transition: background-color 0.2s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.saveButton:hover {
+  background-color: #8DD200;
+}
+
+/* Menu for row actions */
+.menuWrapper {
+  position: relative;
+  display: inline-block;
+  text-align: right;
+  z-index: 10; /* Ensure menu is above other content */
+}
+
+.menuButton {
+  padding: 5px 8px;
+  border-radius: 6px;
+  color: var(--color-text-secondary);
+  font-size: 18px; /* Larger dots */
+  line-height: 1; /* Center dots */
+  transition: background-color 0.2s ease, color 0.2s ease;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.menuButton:hover {
+  background-color: var(--color-dark-bg-3);
+  color: var(--color-text-primary);
+}
+
+.menuItems {
+  position: absolute;
+  right: 10px; /* Move container leftwards */
+  margin-top: 8px;
+  background-color: var(--color-dark-bg-2);
+  border: 1px solid var(--color-dark-bg-4);
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  width: 160px;
+  z-index: 20; /* Ensure menu items are on top */
+}
+
+.menuItemWrapper {
+  padding: 5px;
+  margin-right: 10px;
+}
+
+/* Add divider between menu items */
+.menuItem:not(:last-child) {
+  border-bottom: 1px solid var(--color-dark-bg-4);
+  margin-bottom: 4px;
+  padding-bottom: 12px;
+}
+
+.menuItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  text-align: left;
+  padding: 8px 12px;
+  border-radius: 6px;
+  color: var(--color-text-primary);
+  font-size: 14px;
+  transition: background-color 0.1s ease;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+/* Icon styling */
+.menuIcon {
+  width: 16px;
+  height: 16px;
+  opacity: 0.8;
+}
+
+/* Danger style for destructive action */
+.menuItemDanger {
+  color: #FDA4AF;
+}
+
+.menuItemActive {
+  background-color: var(--color-dark-bg-3);
+}
+
+/* Transition styles for Headless UI Menu */
+.menuEnter { 
+  transition: opacity 200ms ease-out, transform 200ms ease-out;
+  opacity: 0; 
+  transform: translateY(-5px); 
+}
+.menuEnterFrom { 
+  opacity: 0; 
+  transform: translateY(-5px); 
+}
+.menuEnterTo { 
+  opacity: 1; 
+  transform: translateY(0); 
+}
+.menuLeave { 
+  transition: opacity 150ms ease-in, transform 150ms ease-in;
+  opacity: 1; 
+  transform: translateY(0); 
+}
+.menuLeaveFrom { 
+  opacity: 1; 
+  transform: translateY(0); 
+}
+.menuLeaveTo { 
+  opacity: 0; 
+  transform: translateY(-5px); 
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .row td {
+    padding: 8px 5px;
+    font-size: 12px;
+  }
+  .tokenImage {
+    width: 20px;
+    height: 20px;
+  }
+  .tokenInfo {
+    gap: 0;
+  }
+  .tokenName {
+    font-size: 13px;
+  }
+  .tokenSymbol {
+    font-size: 10px;
+  }
+  .sparklineCell {
+    width: 80px;
+    height: 25px; /* Even more compact on mobile */
+  }
+  .holdingsInput {
+    width: 60px;
+    padding: 6px 8px;
+    font-size: 12px;
+    border-radius: 6px;
+  }
+  .saveButton {
+    padding: 6px 10px;
+    font-size: 10px;
+  }
+  .menuButton {
+    font-size: 16px;
+    padding: 3px 6px;
+  }
+  .menuItems {
+    width: 160px;
+  }
+  .menuItem {
+    padding: 6px 10px;
+    font-size: 12px;
+    gap: 6px;
+  }
+  .menuIcon {
+    width: 14px;
+    height: 14px;
+  }
+}

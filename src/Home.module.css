@@ -1,0 +1,29 @@
+/* src/Home.module.css */
+.homeContainer {
+  display: grid;
+  grid-template-columns: 1fr; /* Default to single column for mobile */
+  gap: 20px;
+  width: 100%;
+  max-width: 1440px; /* Max width as per Figma */
+  padding: 0 20px; /* Inner padding */
+}
+
+@media (min-width: 1024px) { /* Keep single column on large screens too */
+  .homeContainer {
+    grid-template-columns: 1fr;
+    align-items: flex-start;
+  }
+}
+
+/* For full view, expand the right column */
+@media (min-width: 1024px) {
+  .homeContainer.fullView {
+    grid-template-columns: 1fr; /* Single column layout */
+  }
+}
+
+@media (max-width: 768px) {
+  .homeContainer {
+    padding: 0 10px; /* Less padding on mobile */
+  }
+}

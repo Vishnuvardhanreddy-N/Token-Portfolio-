@@ -1,0 +1,227 @@
+.portfolioSummary {
+  padding: 20px 30px;
+  border-radius: 12px;
+  /* Desktop layout: Grid with two columns */
+  display: grid;
+  grid-template-columns: 400px 1fr; /* First column fixed width, second takes remaining */
+  gap: 30px; /* Gap between the two main columns */
+  width: 100%;
+  box-sizing: border-box;
+  align-items: stretch; /* Make grid items stretch to fill the height of the row */
+}
+
+/* Left Column: Portfolio Total Value */
+.portfolioInfoColumn {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Pushes the top group to the top, and lastUpdated to the bottom */
+}
+
+.portfolioInfoTop {
+  display: flex;
+  flex-direction: column;
+}
+
+.sectionTitle {
+  font-size: 16px;
+  color: #A1A1AA;
+  margin-bottom: 8px; /* Default margin for titles (space between title and value) */
+}
+
+.totalValue {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin-bottom: 0; /* Important: Remove bottom margin to let flexbox handle spacing */
+}
+
+.lastUpdated {
+  font-size: 12px;
+  color: var(--color-text-secondary);
+}
+
+/* Right Column: Chart and Legend */
+.chartAndLegendColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Space between "Portfolio Total" title and chart container */
+}
+
+/* Specific styling for the sectionTitle inside chartAndLegendColumn */
+.chartAndLegendColumn .sectionTitle {
+  margin-bottom: 0; /* No bottom margin, as it's a section header */
+}
+
+.chartContainer {
+  display: flex;
+  align-items: center; /* Vertically centers chart and legend */
+  justify-content: flex-start; /* Aligns chart and legend to the start */
+  gap: 24px; /* Gap between chart and legend */
+}
+
+.chartSection {
+  width: 200px; /* Increased chart size for desktop */
+  height: 200px; /* Increased chart size for desktop */
+  flex-shrink: 0; /* Prevents chart from shrinking */
+}
+
+.legendSection {
+  flex: 1; /* Allows legend to take available space */
+  min-width: 0; /* Allows flex item to shrink when needed */
+}
+
+.legendList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column; /* Stacks legend items vertically */
+  gap: 8px; /* Space between legend items */
+}
+
+.legendItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* <-- CRUCIAL: Pushes legendNameGroup to left, legendPercentage to right */
+  font-size: 12px; /* Default desktop font size */
+}
+
+.legendNameGroup {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* Gap between color dot and name text on desktop */
+  flex: 1; /* Allows the name group to take available space */
+  min-width: 0; /* Important for text-overflow to work */
+}
+
+.legendColor {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.legendText {
+  flex: 1; /* Allows text to grow/shrink within its group */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var(--color-text-primary);
+  font-weight: 500;
+  min-width: 0; /* Important for ellipsis */
+}
+
+.legendPercentage {
+  font-weight: 500;
+  flex-shrink: 0; /* Ensures percentage doesn't shrink */
+  text-align: right; /* Aligns percentage to the right of its space */
+}
+
+.loadingMessage, .errorMessage, .emptyMessage {
+  text-align: center;
+  padding: 20px;
+  color: var(--color-text-secondary);
+  grid-column: 1 / -1;
+}
+
+/* Tablet breakpoint */
+@media (max-width: 1024px) {
+  .portfolioSummary {
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    padding: 15px 25px;
+  }
+  .sectionTitle {
+    font-size: 15px;
+  }
+  .totalValue {
+    font-size: 30px;
+  }
+  .chartAndLegendColumn {
+    gap: 16px;
+  }
+  .chartContainer {
+    gap: 20px;
+  }
+  .chartSection {
+    width: 180px;
+    height: 180px;
+  }
+  .legendItem {
+    font-size: 11.5px;
+  }
+}
+
+/* Mobile breakpoint - Matches screenshot 2 layout */
+@media (max-width: 512px) {
+  .portfolioSummary {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 15px 20px;
+    align-items: center; /* <-- CHANGED: Center content on mobile */
+  }
+
+  .portfolioInfoColumn {
+    justify-content: flex-start;
+    align-items: flex-start; /* Keeps text left-aligned within the centered column */
+    width: 100%; /* Ensures column takes full width for proper content alignment */
+  }
+
+  .totalValue {
+    font-size: 28px;
+    margin-bottom: 4px;
+  }
+  .lastUpdated {
+    font-size: 11px;
+    margin-top: 0;
+  }
+  
+  .chartAndLegendColumn {
+    gap: 12px;
+    align-items: center; /* <-- Ensure this column's children (title, chartContainer) are centered */
+    width: 100%; /* Ensures column takes full width for proper content alignment */
+  }
+
+  .chartContainer {
+    flex-direction: column;
+    gap: 16px;
+    align-items: center; /* This already centers chartSection and legendSection within chartContainer */
+    width: 100%; /* <-- CHANGED: Ensure chartContainer takes full width to center its content properly */
+  }
+  
+  .chartSection {
+    width: 150px;
+    height: 150px;
+  }
+  
+  .legendSection {
+    width: 100%; /* Legend takes full width on mobile */
+  }
+  
+  .legendList {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    max-width: 300px; /* Constrain list width */
+    margin: 0 auto; /* Center the list */
+  }
+  
+  .legendItem {
+    /* justify-content: space-between is now a common style */
+    font-size: 11px;
+  }
+
+  .legendNameGroup {
+    gap: 6px; /* Smaller gap for mobile */
+  }
+  
+  .legendColor {
+    width: 9px;
+    height: 9px;
+  }
+
+  .loadingMessage, .errorMessage, .emptyMessage {
+    grid-column: auto;
+  }
+}

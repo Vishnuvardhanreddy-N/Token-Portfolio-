@@ -1,0 +1,217 @@
+/* src/components/watchlist/WatchlistTable.module.css */
+.watchlistTableContainer {
+  flex: 1; /* Allow table to take remaining space */
+  display: flex;
+  flex-direction: column;
+  border-radius: 12px;
+  overflow: hidden; /* For rounded corners on the table */
+  background-color: var(--color-dark-bg-card); /* Assuming bg-card sets this */
+  padding: 0 30px 20px 30px; /* Horizontal padding for the whole container */
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0; /* Vertical padding only, horizontal handled by container */
+}
+
+.title {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  display: flex; /* Make title a flex container for icon and text */
+  align-items: center;
+  gap: 8px; /* Space between icon and text */
+}
+
+.starIcon {
+  width: 18px; /* Set width for the image tag */
+  height: 18px; /* Set height for the image tag */
+  flex-shrink: 0; /* Prevent icon from shrinking */
+  /* filter example if needed */
+}
+
+.actions {
+  display: flex;
+  gap: 10px; /* Gap between buttons on desktop */
+  align-items: center; /* Vertically align buttons */
+}
+
+.refreshButton {
+  display: flex; /* Make button a flex container for icon and text */
+  align-items: center;
+  gap: 6px; /* Space between icon and text within the button */
+}
+
+.iconWrapper {
+  display: flex; /* Ensures icon is centered if it's smaller than wrapper */
+  align-items: center;
+  justify-content: center;
+}
+
+.refreshIcon { /* Class for the refresh icon <img> */
+  width: 16px; /* Set width for the image tag */
+  height: 16px; /* Set height for the image tag */
+  flex-shrink: 0; /* Prevent icon from shrinking */
+  /* filter example if needed */
+}
+
+.refreshButtonText {
+  white-space: nowrap; /* Prevents text from wrapping */
+}
+
+.tableWrapper {
+  overflow-x: auto; /* Allow horizontal scroll on smaller screens */
+  flex-grow: 1;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 700px; /* Minimum width to prevent excessive squeezing */
+}
+
+.table thead th {
+  padding: 15px 0px; /* Vertical padding only; horizontal handled by container */
+  text-align: left;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  border-bottom: 1px solid var(--color-dark-bg-4);
+  white-space: nowrap; /* Prevent headers from wrapping */
+}
+
+.table thead th:nth-child(1) { width: 20%; } /* Token */
+.table thead th:nth-child(2) { width: 15%; } /* Price */
+.table thead th:nth-child(3) { width: 12%; } /* 24h % */
+.table thead th:nth-child(4) { width: 18%; } /* Sparkline */
+.table thead th:nth-child(5) { width: 15%; } /* Holdings */
+.table thead th:nth-child(6) { width: 15%; } /* Value */
+.table thead th:nth-child(7) { width: 5%; }  /* Actions */
+
+.actionsColumn {
+  width: 50px; /* For the menu button */
+  text-align: right !important;
+}
+
+.loadingState, .errorState, .emptyState {
+  text-align: center;
+  padding: 40px 20px;
+  font-size: 16px;
+  color: var(--color-text-secondary);
+}
+
+.errorState {
+  color: var(--color-accent-red);
+}
+
+@media (max-width: 768px) {
+  .watchlistTableContainer {
+    padding: 0 20px 15px 20px; /* Adjusted mobile padding */
+  }
+
+  .header {
+    flex-direction: row; /* <-- CRUCIAL: Make it horizontal again */
+    align-items: center; /* Vertically center items in the row */
+    justify-content: space-between; /* Push title to left, actions group to right */
+    gap: 10px; /* Gap between title and actions if they are too close */
+    padding: 15px 0; /* Vertical padding only */
+  }
+  .title {
+    font-size: 14px;
+    gap: 6px; /* Smaller gap for mobile title icon and text */
+    flex-shrink: 0; /* Prevent title from shrinking */
+  }
+  .starIcon { /* Adjust for mobile */
+    width: 16px;
+    height: 16px;
+  }
+
+  .actions {
+    display: flex; /* Ensure actions is a flex container */
+    align-items: center; /* Vertically align buttons within actions */
+    gap: 8px; /* <-- CRUCIAL: Gap between Refresh button and Add Token button */
+    flex-shrink: 0; /* Prevent the actions group from shrinking */
+    /* width: 100%; is not needed here as parent header's justify-content distributes */
+  }
+
+  .actions .button {
+    /* Base styles for buttons within .actions */
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+  
+  .refreshButton {
+    gap: 0; /* No gap when text is hidden */
+    padding: 10px; /* Square-ish button */
+    justify-content: center; /* Center the icon */
+    flex: 0 0 auto; /* Fixed size, override flex:1 from .actions .button */
+    width: 40px;
+    height: 40px;
+  }
+  .refreshButtonText {
+    display: none; /* Hide the text on mobile */
+  }
+  .refreshIcon { /* Adjust icon size for mobile button */
+    width: 18px;
+    height: 18px;
+  }
+
+  .button-primary { /* Style for Add Token button specifically */
+    flex: 1; /* Allow Add Token button to take available space within .actions */
+    max-width: 120px; /* Optional: Limit max width for a cleaner look on very wide mobiles */
+  }
+
+  .table thead th {
+    padding: 10px 0px; /* Adjust as needed */
+    font-size: 10px;
+  }
+  .table {
+    min-width: 600px;
+  }
+}
+
+/* --- Base Button Styles (Assuming these are global or in a common file) --- */
+/* (These remain unchanged) */
+.button {
+  padding: 10px 15px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+  white-space: nowrap; /* Prevents button text from wrapping */
+}
+
+.button-outline {
+  background-color: transparent;
+  border: 1px solid var(--color-dark-bg-4, #333);
+  color: var(--color-text-secondary, #A1A1AA);
+}
+
+.button-outline:hover:not(:disabled) {
+  background-color: var(--color-dark-bg-4, #444);
+  color: var(--color-text-primary, #F5F5F5);
+}
+
+.button-outline:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.button-primary {
+  background-color: var(--color-accent-green, #9ADF00);
+  border: 1px solid var(--color-accent-green, #9ADF00);
+  color: var(--color-text-dark, #18181B);
+}
+
+.button-primary:hover:not(:disabled) {
+  background-color: #8DD200;
+  border-color: #8DD200;
+}
+
+.button-primary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
