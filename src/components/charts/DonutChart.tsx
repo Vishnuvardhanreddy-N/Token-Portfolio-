@@ -10,20 +10,6 @@ interface DonutChartProps {
   totalValue: number;
 }
 
-const CustomTooltip = ({ active, payload }: any) => {
-  if (active && payload && payload.length) {
-    const item = payload[0].payload;
-    return (
-      <div className={styles.tooltip}>
-        <p className={styles.tooltipName} style={{ color: item.color }}>{item.name}</p> {/* Uses full name for tooltip */}
-        <p className={styles.tooltipValue}>Value: {formatCurrency(item.value)}</p>
-        <p className={styles.tooltipPercentage}>Percentage: {item.percentage}</p>
-      </div>
-    );
-  }
-  return null;
-};
-
 const DonutChart: React.FC<DonutChartProps> = ({ data, totalValue }) => {
   if (!data || data.length === 0 || totalValue === 0) {
     return (
